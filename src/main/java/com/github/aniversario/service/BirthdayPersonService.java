@@ -16,25 +16,26 @@ public class BirthdayPersonService {
     @Autowired
     private BirthdayPersonRepository birthdayPersonRepository;
 
-    public List<BirthdayPersonDTO> findAll(){
+    public List<BirthdayPersonDTO> findAll() {
         List<BirthdayPerson> result = birthdayPersonRepository.findAll();
         return result.stream().map(x -> new BirthdayPersonDTO(x)).collect(Collectors.toList());
     }
 
-    public List<BirthdayPersonDTO> birthdayOfTheDay(Integer day, Integer month){
+    public List<BirthdayPersonDTO> birthdayOfTheDay(Integer day, Integer month) {
         List<BirthdayPerson> result = birthdayPersonRepository.findAll();
         return result.stream().map(x -> new BirthdayPersonDTO(x)).collect(Collectors.toList()).stream().filter(x -> x.getDay() == day && x.getMonth() == month).collect(Collectors.toList());
     }
-    public List<BirthdayPersonDTO> birthOfTheMonth(Integer month){
+
+    public List<BirthdayPersonDTO> birthOfTheMonth(Integer month) {
         List<BirthdayPerson> result = birthdayPersonRepository.findAll();
         return result.stream().map(x -> new BirthdayPersonDTO(x)).collect(Collectors.toList()).stream().filter(x -> x.getMonth() == month).collect(Collectors.toList());
     }
 
-    public BirthdayPerson save(BirthdayPerson birthdayPerson){
+    public BirthdayPerson save(BirthdayPerson birthdayPerson) {
         return birthdayPersonRepository.save(birthdayPerson);
     }
 
-    public void delete(long id){
+    public void delete(long id) {
         birthdayPersonRepository.deleteById(id);
     }
 }

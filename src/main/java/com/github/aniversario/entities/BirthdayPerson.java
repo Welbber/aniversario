@@ -1,7 +1,5 @@
 package com.github.aniversario.entities;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
