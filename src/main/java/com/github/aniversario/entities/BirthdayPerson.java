@@ -1,14 +1,20 @@
 package com.github.aniversario.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "birthday_person")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BirthdayPerson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.PRIVATE)
     private Long id;
 
     @NotNull
@@ -25,41 +31,5 @@ public class BirthdayPerson {
     @Max(12)
     private Integer month;
 
-    public BirthdayPerson(String name, Integer day, Integer month) {
-        this.name = name;
-        this.day = day;
-        this.month = month;
-    }
-
-    public BirthdayPerson() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getDay() {
-        return day;
-    }
-
-    public void setDay(Integer day) {
-        this.day = day;
-    }
-
-    public Integer getMonth() {
-        return month;
-    }
-
-    public void setMonth(Integer month) {
-        this.month = month;
-    }
+    private String description;
 }
