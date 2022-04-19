@@ -8,9 +8,13 @@ import java.util.List;
 
 public interface BirthdayPersonRepository extends JpaRepository<BirthdayPerson, Long> {
 
-    @Query("select b from BirthdayPerson b where b.day = ?1 and b.month = ?2")
     public List<BirthdayPerson> findByDayAndMonth(Integer day, Integer month);
 
-    @Query("select b from BirthdayPerson b where b.month = ?1")
     public List<BirthdayPerson> findByMonth(Integer month);
+
+    @Query("select b from BirthdayPerson b where lower(b.name) like %:name%")
+    public List<BirthdayPerson> findAllByName(String name);
+
+    @Query("select b from BirthdayPerson b where lower(b.description) like %:description%")
+    public List<BirthdayPerson> findAllByDescription(String description);
 }
